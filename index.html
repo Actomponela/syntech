@@ -1,292 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkyTech — Digital Innovation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== RESET ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acton Mponela | Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Global */
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333; scroll-behavior:smooth; }
+a { text-decoration:none; color:inherit; }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f7f9fc;
-      color: #222;
-      overflow-x: hidden;
-    }
+/* Header / Nav */
+header { position:sticky; top:0; background:#4CAF50; color:white; padding:1rem 0; z-index:1000; }
+header nav { display:flex; justify-content:center; gap:1rem; }
+header nav a { padding:0.5rem 1rem; transition:0.3s; border-radius:5px; }
+header nav a:hover { background:white; color:#4CAF50; }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+/* Hero Section */
+.hero { background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://via.placeholder.com/1500x500') center/cover no-repeat; color:white; text-align:center; padding:6rem 2rem; }
+.hero h1 { font-size:3rem; margin-bottom:1rem; }
+.hero p { font-size:1.5rem; margin-bottom:2rem; }
+.hero a { padding:1rem 2rem; background:#ffe600; color:#333; border-radius:5px; font-weight:bold; transition:0.3s; }
+.hero a:hover { background:#fff; transform:scale(1.05); }
 
-    /* ===== NAVBAR ===== */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      z-index: 1000;
-    }
+/* Sections */
+section { max-width:1000px; margin:3rem auto; padding:2rem; background:white; border-radius:10px; }
+h2 { text-align:center; color:#4CAF50; margin-bottom:1rem; }
+h2::after { content:''; display:block; width:50px; height:3px; background:#4CAF50; margin:0.5rem auto 0; border-radius:2px; }
 
-    nav {
-      max-width: 1200px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 5%;
-    }
+/* Skills */
+.skills { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
+.skill { flex:1 1 150px; padding:1rem; text-align:center; border:2px solid #4CAF50; border-radius:10px; transition:0.3s; cursor:pointer; }
+.skill i { font-size:2rem; margin-bottom:0.5rem; color:#4CAF50; transition:0.3s; }
+.skill:hover { transform:scale(1.05); background:#4CAF50; color:white; }
+.skill:hover i { color:white; }
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #0078ff;
-    }
+/* Projects */
+.projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; }
+.project { border-radius:10px; overflow:hidden; transition:0.3s; cursor:pointer; }
+.project img { width:100%; display:block; }
+.project .info { padding:1rem; background:#fff; border-top:2px solid #4CAF50; transition:0.3s; }
+.project:hover { transform:scale(1.03); box-shadow:0 10px 20px rgba(0,0,0,0.1); }
 
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-    }
+/* Footer */
+footer { text-align:center; padding:2rem; background:#333; color:white; margin-top:2rem; }
 
-    .nav-links a {
-      color: #333;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #0078ff;
-    }
-
-    /* ===== HERO (FADE SLIDER) ===== */
-    .hero {
-      position: relative;
-      height: 100vh;
-      margin-top: 60px;
-      overflow: hidden;
-    }
-
-    .hero img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      animation: fade 24s infinite;
-    }
-
-    .hero img:nth-child(1) {
-      animation-delay: 0s;
-    }
-
-    .hero img:nth-child(2) {
-      animation-delay: 6s;
-    }
-
-    .hero img:nth-child(3) {
-      animation-delay: 12s;
-    }
-
-    .hero img:nth-child(4) {
-      animation-delay: 18s;
-    }
-
-    @keyframes fade {
-      0%, 25% { opacity: 1; }
-      30%, 100% { opacity: 0; }
-    }
-
-    /* ===== HERO TEXT ===== */
-    .hero-content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.6);
-      z-index: 10;
-      width: 90%;
-      animation: floatText 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes floatText {
-      from { transform: translate(-50%, -52%); }
-      to { transform: translate(-50%, -48%); }
-    }
-
-    .hero-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #f0f0f0;
-    }
-
-    .btn {
-      background: #0078ff;
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 30px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #005fd4;
-    }
-
-    /* ===== FEATURES ===== */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      max-width: 1100px;
-      margin: 5rem auto;
-      padding: 0 2rem;
-      text-align: center;
-    }
-
-    .feature-box {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .feature-box:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    }
-
-    .feature-icon {
-      font-size: 2.5rem;
-      color: #0078ff;
-      margin-bottom: 1rem;
-    }
-
-    /* ===== CTA ===== */
-    .cta {
-      background: #0078ff;
-      color: white;
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .cta h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .cta p {
-      margin-bottom: 2rem;
-      font-size: 1.1rem;
-    }
-
-    .cta .btn {
-      background: white;
-      color: #0078ff;
-      font-weight: 700;
-    }
-
-    .cta .btn:hover {
-      background: #005fd4;
-      color: white;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 1.5rem;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 2rem;
-      }
-
-      .hero-content p {
-        font-size: 1rem;
-      }
-
-      .nav-links {
-        display: none;
-      }
-    }
-  </style>
+/* Responsive */
+@media(max-width:768px){ .skills { flex-direction:column; align-items:center; } .hero h1 { font-size:2rem; } .hero p { font-size:1.2rem; } }
+</style>
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
-  <header>
-    <nav>
-      <div class="logo">SkyTech</div>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </header>
+<!-- Header -->
+<header>
+<nav>
+<a href="index.html">Home</a>
+<a href="contact.html">Contact Me</a>
+</nav>
+</header>
 
-  <!-- ===== HERO SECTION (FADE SLIDER) ===== -->
-  <section class="hero">
-    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1350&q=80" alt="Slide 1">
-    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80" alt="Slide 2">
-    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1350&q=80" alt="Slide 3">
-    <img src="https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=1350&q=80" alt="Slide 4">
+<!-- Hero -->
+<section class="hero">
+<h1>Acton Mponela</h1>
+<p>Front-End Developer & Designer</p>
+<a href="contact.html">Hire Me</a>
+</section>
 
-    <div class="hero-content">
-      <h1>Innovate Without Limits</h1>
-      <p>Building next-generation digital experiences that inspire and empower.</p>
-      <a href="#features" class="btn">Get Started</a>
-    </div>
-  </section>
+<!-- Skills -->
+<section id="skills">
+<h2>My Skills</h2>
+<div class="skills">
+<div class="skill"><i class="fab fa-html5"></i><br>HTML</div>
+<div class="skill"><i class="fab fa-css3-alt"></i><br>CSS</div>
+<div class="skill"><i class="fab fa-js"></i><br>JavaScript</div>
+<div class="skill"><i class="fas fa-mobile-alt"></i><br>Responsive Design</div>
+<div class="skill"><i class="fas fa-pencil-ruler"></i><br>UI/UX Design</div>
+</div>
+</section>
 
-  <!-- ===== FEATURES ===== -->
-  <section class="features" id="features">
-    <div class="feature-box">
-      <div class="feature-icon">⚙️</div>
-      <h3>Smart Solutions</h3>
-      <p>Tailor-made systems that adapt to your unique business needs.</p>
-    </div>
-    <div class="feature-box">
-      <div class="feature-icon">🚀</div>
-      <h3>Seamless Performance</h3>
-      <p>Engineered for speed, security, and scalability across all platforms.</p>
-    </div>
-    <div class="feature-box">
-      <div class="feature-icon">💡</div>
-      <h3>Creative Vision</h3>
-      <p>We turn your ideas into powerful, modern digital realities.</p>
-    </div>
-  </section>
+<!-- Projects -->
+<section id="projects">
+<h2>Projects</h2>
+<div class="projects">
+<div class="project">
+<img src="https://via.placeholder.com/400x250" alt="Portfolio Website">
+<div class="info"><h3>Portfolio Website</h3><p>A clean, responsive portfolio website showcasing my work.</p></div>
+</div>
+<div class="project">
+<img src="https://via.placeholder.com/400x250" alt="Landing Page">
+<div class="info"><h3>Landing Page</h3><p>A modern landing page design for a startup.</p></div>
+</div>
+<div class="project">
+<img src="https://via.placeholder.com/400x250" alt="Todo App">
+<div class="info"><h3>Todo App</h3><p>A functional JavaScript todo application.</p></div>
+</div>
+</div>
+</section>
 
-  <!-- ===== CTA ===== -->
-  <section class="cta">
-    <h2>Ready to take your brand higher?</h2>
-    <p>Partner with SkyTech — where innovation meets execution.</p>
-    <a href="#contact" class="btn">Let's Talk</a>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <p>&copy; 2025 SkyTech. All Rights Reserved.</p>
-  </footer>
-
+<footer>
+&copy; 2025 Acton Mponela | All rights reserved
+</footer>
 </body>
 </html>
