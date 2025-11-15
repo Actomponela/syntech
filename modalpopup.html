@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modal / Popup Window with Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a0a0a;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #ffffff;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #00eaff;
+      color: #0a0a0a;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+      z-index: 1000;
+    }
+
+    .modal {
+      background: #111;
+      width: 90%;
+      max-width: 450px;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      transform: translateY(-40px);
+      opacity: 0;
+      animation: slideIn 0.4s forwards;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #ff4444;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: #00eaff;
+      outline: none;
+    }
+
+    form button[type="submit"] {
+      background: #00eaff;
+      color: #0a0a0a;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    form button[type="submit"]:hover {
+      opacity: 0.8;
+    }
+
+    #successMessage {
+      display: none;
+      margin-top: 15px;
+      color: #00ff88;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-40px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <button id="openModal">Open Modal</button>
+
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <h2>Contact Us</h2>
+      <form id="modalForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <p id="successMessage">Thank you! Your message has been sent.</p>
+      <button class="close-btn" id="closeModal">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const openBtn = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const overlay = document.getElementById('overlay');
+    const form = document.getElementById('modalForm');
+    const successMessage = document.getElementById('successMessage');
+
+    openBtn.addEventListener('click', () => {
+      overlay.style.display = 'flex';
+      successMessage.style.display = 'none';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      successMessage.style.display = 'block';
+      form.reset();
+      // Here you can add AJAX or fetch to send form data to a server
+    });
+  </script>
+
+</body>
+</html>
