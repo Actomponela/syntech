@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ Accordion Widget</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a0a0a;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      color: #ffffff;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #00eaff;
+    }
+
+    .faq {
+      border-bottom: 1px solid #222;
+      padding: 15px 0;
+      cursor: pointer;
+    }
+
+    .faq-question {
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #00eaff;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      color: #cccccc;
+      line-height: 1.6;
+    }
+
+    .faq.open .faq-answer {
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>FAQ</h2>
+
+    <div class="faq">
+      <div class="faq-question">
+        What is an FAQ section?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        An FAQ section is a list of common questions and their answers related to a topic.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-question">
+        How does this accordion work?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        JavaScript toggles the open and closed states to show or hide the content.
+      </div>
+    </div>
+
+    <div class="faq">
+      <div class="faq-question">
+        Is it mobile responsive?
+        <span>+</span>
+      </div>
+      <div class="faq-answer">
+        Yes! The layout adjusts to different screen sizes, making it mobile-friendly.
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const faqs = document.querySelectorAll('.faq');
+
+    faqs.forEach(faq => {
+      faq.addEventListener('click', () => {
+        faq.classList.toggle('open');
+        const icon = faq.querySelector('span');
+        icon.textContent = faq.classList.contains('open') ? '-' : '+';
+      });
+    });
+  </script>
+</body>
+</html>
